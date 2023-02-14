@@ -1,0 +1,8 @@
+# Environments
+env.py
+
+# other
+*.csv
+
+# Jupyter Notebook
+*.ipynb_checkpoints*
