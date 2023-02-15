@@ -40,6 +40,8 @@ def overview(df):
     ################################## Outlier Function ############################
     
 def prep_cc(df):
+    '''This function removes outliers ourside of our generated upper and lower bounds'''
+   
     for cols in df:
 
         q1, q3 = df[cols].quantile([.25, .75])  # get quartiles
