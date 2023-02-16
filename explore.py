@@ -114,8 +114,8 @@ def question_hypothesis_test(question_number,df,column_name,question,target,alph
 #################################################### Visual Functions ####################################################
 
 def big_question(df):
-    sns.countplot(data = df, x ='fraud', palette='winter')
     sns.set_theme(style="whitegrid")
+    sns.countplot(data = df, x ='fraud', palette='colorblind')
     plt.xlabel('Fraud?')
     plt.ylabel('Purchase count')
     plt.xticks(np.arange(2), ['No', 'Yes'])
@@ -126,9 +126,9 @@ def big_question(df):
 def question_1_visual(df):
     sns.countplot(data = df, x ='online_order', hue='fraud')
     sns.set_theme(style="whitegrid")
-    plt.xlabel('Online Order')
     plt.ylabel('Purchase count')
-    plt.xticks(np.arange(2), ['No', 'Yes'])
+    plt.xlabel('.')
+    plt.xticks(np.arange(2), ['No Online Order', 'Online Order'])
     plt.title('Do Fraud and Online Ordering have a Relationship?')
     title = 'Fraud'
     mylabels = ['No', 'Yes']
@@ -139,9 +139,9 @@ def question_1_visual(df):
 def question_2_visual(df):
     sns.countplot(data = df, x ='used_pin_number', hue='fraud')
     sns.set_theme(style="whitegrid")
-    plt.xlabel('Used Pin Number')
     plt.ylabel('Purchase Count')
-    plt.xticks(np.arange(2), ['No', 'Yes'])
+    plt.xlabel('.')
+    plt.xticks(np.arange(2), ['No Pin', 'Pin'])
     plt.title('Does The Use Of a Pin and Fraud Have a Relationship?')
     title = 'Fraud'
     mylabels = ['No', 'Yes']
@@ -150,31 +150,91 @@ def question_2_visual(df):
 
 
 def question_3_visual(df):
-    question = "Is there a relationship between Citric Acid and Quality?"
-
-    x = df['quality']
-    y = df['citric_acid']
-
-    fig, ax = plt.subplots()
-
-    ax.bar(x,y, width=0.1, color="pink", zorder=0)
-    sns.regplot(x=x, y=y, ax=ax)
-    ax.set_ylim(0, None)
-    plt.suptitle(f"{question}")
-
+    sns.scatterplot(data=df, x='distance_from_home', y='distance_from_last_transaction', 
+                hue='fraud')
+    plt.title('Are Distances Related?')
+    plt.ylabel('Distance From Last Transaction')
+    plt.xlabel('Distance From Home')
     plt.show()
-
+    
 
 def question_4_visual(df):
-    question = "Is there a realationship between Free Sulfur Dioxide and Quality?"
-    x = df["quality"]
-    y = df["free_sulfur_dioxide"]
-
-    fig, ax = plt.subplots()
-
-    ax.bar(x,y, width=0.5, color="deepskyblue", zorder=0)
-    sns.regplot(x=x, y=y, ax=ax,color="palevioletred")
-    ax.set_ylim(0, None)
-    plt.suptitle(f"{question}")
+    sns.barplot(data=df.sample(1000), x='fraud', y='ratio_to_median_purchase_price')
+    plt.title('Fraud Vs Ratio To Median Purchase Price')
+    plt.ylabel('Ratio To Median Purchase Price')
+    plt.xlabel('Fraud')
+    plt.xticks(np.arange(2), ['No', 'Yes'])
     plt.show()
 
+
+def question_hypothesis_test1(df):    
+    a = 0.05
+    observed = pd.crosstab(df['online_order'], df['fraud'])
+    chi2, p, degf, expected = stats.chi2_contingency(observed)
+    # if statement to return our results
+    if p > a:
+        print("We fail to reject null hypothesis")
+    else:
+        print("We reject the null hypothesis, there is a relationship")
+        
+    print(f"chi2: {chi2}")
+    print(f"p:    {p}")
+        
+    
+def question_hypothesis_test2(df):    
+    a = 0.05
+    observed = pd.crosstab(df['online_order'], df['fraud'])
+    chi2, p, degf, expected = stats.chi2_contingency(observed)
+    # if statement to return our results
+    if p > a:
+        print("We fail to reject null hypothesis")
+    else:
+        print("We reject the null hypothesis, there is a relationship")
+        
+    print(f"chi2: {chi2}")
+    print(f"p:    {p}")
+    
+
+def question_hypothesis_test3(df):
+    
+    '''a function which takes in a train data set and calculates and returns a
+       pearsons r test for bathrooms and tax value'''
+    
+    # setting alpha
+    a = 0.05
+    
+    # performing a t test
+    corr, p = stats.pearsonr(df.distance_from_home, df.distance_from_last_transaction)
+    corr, p
+
+    # if statement to return our results
+    if p > a:
+        print("We fail to reject null hypothesis")
+    else:
+        print("We reject the null hypothesis, there is correlation")
+        
+    print(f"correlation: {corr}")
+    print(f"p:           {p}")
+    
+    
+def question_hypothesis_test4(df):
+    
+    '''a function which takes in a train data set and calculates and returns a
+       pearsons r test for bathrooms and tax value'''
+    
+    # setting alpha
+    a = 0.05
+    
+    # performing a t test
+    corr, p = stats.pearsonr(df.ratio_to_median_purchase_price, df.fraud)
+    corr, p
+
+    # if statement to return our results
+    if p > a:
+        print("We fail to reject null hypothesis")
+    else:
+        print("We reject the null hypothesis, there is correlation")
+        
+    print(f"correlation: {corr}")
+    print(f"p:           {p}")
+        
