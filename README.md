@@ -52,7 +52,7 @@ This information could be used on future datasets to help find high quality wine
 ### Steps to Reproduce
 
 - Clone this repo.
-- Acquire the data from Kaggle
+- Acquire the data from https://www.kaggle.com/datasets/dhanushnarayananr/credit-card-fraud
 - Put the data in the file containing the cloned repo.
 - Run notebook.
 ### Takeaways and Conclusions
