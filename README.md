@@ -6,9 +6,9 @@ For this project we will be gathering some credit card data, analyzing it for pa
 
 ### Project Goals
 
-Discover drivers of quality
-Use drivers to develop a machine learning model that accurately predicts wine quality
-This information could be used on future datasets to help find high quality wine
+- Discover drivers of fraud from credit card data
+- Use these drivers to develop a machine learning model that helps predicts fraud
+- This information could be used on future datasets to help detect fraud
 
 ### Initial Questions
 
@@ -66,7 +66,7 @@ This information could be used on future datasets to help find high quality wine
 - Adding a feature for mean purchases in a day can help with modeling
 - Adding a feature for distance from work could also help as we spend most time at our homes and jobs
 - Purchase amounts can be helpful as well
-- If provided more time to work on this project I would try and use scaling with my modeling and I would also try and bin the distance and ratio to median purchase price to use for modeling.
+- If provided more time to work on this project I would bin the distance and ratio to median purchase price to use for modeling.
 
 
 ```python
