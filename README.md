@@ -67,8 +67,3 @@ For this project we will be gathering some credit card data, analyzing it for pa
 - Adding a feature for distance from work could also help as we spend most time at our homes and jobs
 - Purchase amounts can be helpful as well
 - If provided more time to work on this project I would bin the distance and ratio to median purchase price to use for modeling.
-
-
-```python
-
-```
